@@ -9,8 +9,8 @@ public class DateUtilities {
     public static boolean isLeap(int year) {
         if (year % 4 == 0) {
             if (year % 100 == 0) {
-                if (year % 400 != 0)
-                    return false;
+                if (year % 400 == 0)
+                    return true;
             }
             // if the year is not century
             else
@@ -39,7 +39,7 @@ public class DateUtilities {
             String[] buff = aux.split(" ");
             String month;
             String day = buff[1];
-            String year = buff[2];
+            String year = buff[3];
             switch (buff[0].toLowerCase()){
                 case "january":
                     month = "01";
@@ -91,7 +91,8 @@ public class DateUtilities {
 
 
     public static boolean checkISODate ( String ISODate ) {
-        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        format.setLenient(false);
         try{
             Date d  =format.parse(ISODate);
             return true;
