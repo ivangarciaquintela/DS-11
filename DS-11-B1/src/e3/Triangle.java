@@ -1,5 +1,6 @@
 package e3;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public record Triangle(float angle0, float angle1, float angle2) {
@@ -88,7 +89,11 @@ public record Triangle(float angle0, float angle1, float angle2) {
             return false;
 
         Triangle t = (Triangle) o;
-        return t.angle0==this.angle0 && t.angle1==this.angle1 && t.angle2==this.angle2;
+        float[] t1=  new float[]{this.angle0,this.angle1,this.angle2};
+        float[] t2=  new float[]{t.angle0,t.angle1,t.angle2};
+        Arrays.sort(t1);
+        Arrays.sort(t2);
+        return  t1[0]==t2[0] && t1[1]==t2[1] && t1[2]==t2[2];
     }
 
     /**
@@ -99,8 +104,8 @@ public record Triangle(float angle0, float angle1, float angle2) {
      */
     @Override
     public int hashCode () {
-        int result;
-        result = (int)angle0 + (int)angle1+ (int)angle2;
-        return 31*result;
+        float[] t=  new float[]{this.angle0,this.angle1,this.angle2};
+        Arrays.sort(t);
+        return Objects.hash(t[0],t[1],t[2]);
     }
 }
