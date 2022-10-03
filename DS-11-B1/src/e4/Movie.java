@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class Movie {
-    private String title;
-    private ArrayList<MovieRating> ratings;
+    private final String title;
+    private final ArrayList<MovieRating> ratings;
     /**
      * * Creates a new movie with the list of ratings empty .
      * * @param title Movie title .
