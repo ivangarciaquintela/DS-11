@@ -13,13 +13,32 @@ public class SocialDistance {
                     layout[i][j] = '#';
             }
         }
+        for (int i = 0; i < layout.length ; i++) {
+            for (int j = 0; j < layout[i].length; j++) {
+                if ((layout[i][j]=='A') && (sumalibres(layout, i, j)<4))
+                    layout[i][j] = '#';
+            }
+        }
 
         /**comprobar si hay + de 4 sentados al rededor**/
         return layout;
     }
 
+
+    private static int sumalibres(char [][] layout, int x, int y){
+        return ((libreUP(layout, x, y))?1:0)+
+                ((libreDOWN(layout, x, y))?1:0)+
+                ((libreRIGHT(layout, x, y))?1:0)+
+                ((libreLEFT(layout, x, y))?1:0)+
+                ((libreLUP(layout, x, y))?1:0)+
+                ((libreRUP(layout, x, y))?1:0)+
+                ((libreRDOWN(layout, x, y))?1:0)+
+                ((libreLDOWN(layout, x, y))?1:0);
+    }
+
     private static boolean libre(char [][] layout, int x, int y){
-        return (layout[x][y]=='A') && libreUP(layout, x, y) &&
+        return (layout[x][y]=='A') &&
+                libreUP(layout, x, y) &&
                 libreDOWN(layout, x, y) &&
                 libreRIGHT(layout, x, y) &&
                 libreLEFT(layout, x, y) &&
