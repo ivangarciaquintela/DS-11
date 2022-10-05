@@ -5,22 +5,29 @@ public class SocialDistance {
     public static char [][] seatingPeople ( char [][] layout ) {
         int height = layout.length;
         int width = layout[0].length;
+        int s, l;
         //int x  = (int)Math.random() * height;
         //int y  = (int)Math.random() * width;
-        for (int i = 0; i < layout.length ; i++) {
-            for (int j = 0; j < layout[i].length; j++) {
-                if(libre(layout,i,j))
-                    layout[i][j] = '#';
+        do {
+            s= 0;
+            l = 0;
+            for (int i = 0; i < layout.length; i++) {
+                for (int j = 0; j < layout[i].length; j++) {
+                    if ((layout[i][j] == 'A') && (sumalibres(layout, i, j) == 8)) {
+                        layout[i][j] = '#';
+                        s = s + 1;
+                    }
+                   }
+              }
+            for (int i = 0; i < layout.length; i++) {
+               for (int j = 0; j < layout[i].length; j++) {
+                  if ((layout[i][j] == '#') && (sumalibres(layout, i, j) <= 4)) {
+                      layout[i][j] = 'A';
+                      l = l + 1;
+                    }
+                }
             }
-        }
-        for (int i = 0; i < layout.length ; i++) {
-            for (int j = 0; j < layout[i].length; j++) {
-                if ((layout[i][j]=='A') && (sumalibres(layout, i, j)<4))
-                    layout[i][j] = '#';
-            }
-        }
-
-        /**comprobar si hay + de 4 sentados al rededor**/
+        } while ((s!=0) && (l!=0));
         return layout;
     }
 
