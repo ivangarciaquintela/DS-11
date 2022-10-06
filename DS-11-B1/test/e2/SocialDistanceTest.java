@@ -2,6 +2,9 @@ package e2;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SocialDistanceTest {
@@ -44,6 +47,7 @@ class SocialDistanceTest {
                 {'A', '.', '#', '.', '#'},
                 {'#', 'A', 'A', 'A', '.'},
                 {'#', '.', 'A', '#', '.'}};
+
         assertArrayEquals(resultLayout2, SocialDistance.seatingPeople(exampleLayout2));
     }
 
@@ -143,6 +147,7 @@ class SocialDistanceTest {
                 {'.', '.', '.'},
                 {'.', '.', '.'},
                 {'.', '.'}};
+
         assertThrows(IllegalArgumentException.class, () -> SocialDistance.seatingPeople(raggedLayout));
 
         char[][] badCharLayout = {
